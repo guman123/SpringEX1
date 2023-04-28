@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.co.kr.domain.BoardFileDomain;
 import com.co.kr.domain.BoardListDomain;
 import com.co.kr.domain.LoginDomain;
+import com.co.kr.domain.StoreFileDomain;
+import com.co.kr.domain.StoreListDomain;
 
 @Mapper
 public interface UserMapper {
@@ -42,6 +44,12 @@ public interface UserMapper {
 
 	//select one file
 	public List<BoardFileDomain> boardSelectOneFile(HashMap<String, Object> map);
+	
+	public StoreListDomain storeSelectOne(HashMap<String, Object> map);
+
+	//select one file
+	public List<StoreFileDomain> storeSelectOneFile(HashMap<String, Object> map);
+	
     
 }
 

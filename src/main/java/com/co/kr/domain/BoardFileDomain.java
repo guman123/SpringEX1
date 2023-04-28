@@ -10,7 +10,6 @@ public class BoardFileDomain {
 	
 	private Integer bdSeq;
 	private String mbId;
-	
 	private String upOriginalFileName;
 	private String upNewFileName; //동일 이름 업로드 될 경우
 	private String upFilePath;
