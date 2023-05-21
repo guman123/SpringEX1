@@ -1,0 +1,58 @@
+<div class="section list">
+    <table>
+        <th:block th:if="${items}">
+            <colgroup>
+                <col style="width: 5%"/>
+                <col style="width: 50%"/>
+                <col style="width: 10%"/>
+                <col style="width: 15%"/>
+                <col style="width: 15%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>글번호</th>
+                    <th>상품명</th>
+                    <th>아이디</th>
+                    <th>등록일</th>
+                    <th>수정일</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+              <tr th:each="item : ${items}">
+                  <td th:text="${item.stSeq}"></td>
+                  <td><a th:text="${item.stTitle}" th:href="@{/detail(stSeq = ${item.stSeq})}"></a></td>
+                  <td th:text="${item.mbId}"></td>
+                  <td th:text="${item.stCreateAt}"></td>
+                  <td th:text="${item.stUpdateAt}"></td>
+              </tr>
+	        </th:block>    
+        </tbody>
+    </table>
+    
+    <th:block th:if="${detail}">   
+        <h1 style="padding: 30px 0;" th:text="${detail.stTitle}"></h1>
+        <div style="text-align: right;">
+            <span style="color: #00a2be;">글번호 </span> <span th:text="${detail.stSeq}"></span> <span style="color: #00a2be"> | </span>
+            <span style="color: #00a2be">글쓴이 </span> <span th:text="${detail.mbId}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${detail.stCreateAt}"></span> <span style="color: #00a2be"> | </span> 
+            <span th:text="${detail.stUpdateAt}"></span> 
+        </div>
+        
+        <div>
+            <p style="padding: 30px 0;" th:text="${detail.stContent}"></p>
+            <ul th:if="${st_files}"  th:each="file : ${st_files}" style="display: inline-block;margin-bottom: 5px;">
+                <li> <img id="imgId" th:src="@{${file.upNewFileName}}" alt="첨부이미지" height="280" /></li>
+            </ul>
+        </div>
+
+        <div style="padding: 30px 0; text-align:right;">
+			<th:block th:if="${detail.mbId == session.id}">
+			    <a th:href="@{/edit(stSeq = ${detail.stSeq})}"><button>수정</button></a>
+			    <a th:href="@{/remove(stSeq = ${detail.stSeq})}"><button>삭제</button></a>
+			</th:block>
+            <a th:href="@{stList}"><button style="background-color: #00a2be; color: white; margin-left: 20px">목록으로</button></a>
+        </div>
+        
+    </th:block>
+</div>
